@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- SDK Oficial de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         :root {
             --bg-main: #070b14;
@@ -18,21 +21,18 @@
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
             --accent: #f59e0b;
-            --accent-glow: rgba(245, 158, 11, 0.25);
             --whatsapp: #25d366;
             --whatsapp-hover: #1da851;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.1);
             --radius-lg: 20px;
-            --radius-md: 12px;
             --shadow-card: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-        /* HEADER FLOTANTE RESPONSIVO */
         header {
             background-color: var(--bg-glass);
             backdrop-filter: blur(12px);
@@ -88,9 +88,8 @@
             justify-content: center;
         }
 
-        /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, rgba(7, 11, 20, 0.92), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1600&q=80') center/cover;
+            background: linear-gradient(135deg, rgba(7, 11, 20, 0.92), rgba(15, 23, 42, 0.85));
             padding: 3.5rem 1.5rem;
             text-align: center;
             border-bottom: 1px solid var(--border);
@@ -120,7 +119,6 @@
         }
         .trust-item i { color: var(--accent); }
 
-        /* FILTROS DE CATEGORÍA */
         .container { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.2rem; }
         
         .filters { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
@@ -142,19 +140,17 @@
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
-        /* GRID DE PRODUCTOS INTERFAZ MODERNA */
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
 
         .product-card {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
-            overflow: hidden;
+            padding: 1.5rem;
             border: 1px solid var(--border);
             display: flex;
             flex-direction: column;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             box-shadow: var(--shadow-card);
-            position: relative;
         }
         .product-card:hover {
             transform: translateY(-6px);
@@ -162,26 +158,6 @@
             box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.2);
         }
 
-        .img-container { position: relative; width: 100%; height: 240px; overflow: hidden; }
-        .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .product-card:hover .product-img { transform: scale(1.06); }
-
-        .badge-tag {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(7, 11, 20, 0.85);
-            backdrop-filter: blur(6px);
-            color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        .product-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
         .product-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #ffffff; }
         .product-price { font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 0.6rem; }
         .product-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.5; }
@@ -199,7 +175,6 @@
             font-size: 0.9rem;
             outline: none;
             cursor: pointer;
-            transition: border-color 0.2s;
         }
         .select-custom:focus { border-color: var(--primary); }
         .select-custom option { background: var(--bg-card); color: #ffffff; }
@@ -223,7 +198,6 @@
         }
         .add-btn:hover { background: var(--primary-hover); }
 
-        /* MODAL DEL CARRITO / COTIZACIÓN */
         .overlay { position: fixed; inset: 0; background: rgba(7, 11, 20, 0.8); backdrop-filter: blur(5px); display: none; z-index: 1500; }
         .overlay.active { display: block; }
 
@@ -297,7 +271,6 @@
         }
         .whatsapp-btn:hover { background: var(--whatsapp-hover); }
 
-        /* FOOTER */
         footer {
             background: var(--bg-main);
             text-align: center;
@@ -314,7 +287,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="brand-box">
             <div class="logo">Dura<span>Glo</span></div>
@@ -327,36 +299,31 @@
         </button>
     </header>
 
-    <!-- HERO -->
     <section class="hero">
         <h1>Confección Textil <span>Profesional</span></h1>
-        <p>Prendas industriales, térmicas y chamarras de alta resistencia confeccionadas con materiales premium. Atención directa a mayoristas, escuelas y clientes particulares.</p>
+        <p>Prendas industriales y térmicas de alta resistencia. Atención directa a mayoristas, escuelas y clientes particulares.</p>
         
         <div class="trust-badges">
             <div class="trust-item"><i class="fa-solid fa-scissors"></i> Confección A Medida</div>
-            <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Envíos y Entregas directas</div>
-            <div class="trust-item"><i class="fa-solid fa-tags"></i> Precios Directos de Fábrica</div>
+            <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Entregas Seguras</div>
+            <div class="trust-item"><i class="fa-solid fa-tags"></i> Precios de Taller</div>
         </div>
     </section>
 
-    <!-- CONTAINER & CATALOG -->
     <main class="container">
-        <!-- FILTROS -->
         <div class="filters">
             <button class="filter-chip active" onclick="filterCatalog('todos', event)">Todos los Productos</button>
             <button class="filter-chip" onclick="filterCatalog('chalecos', event)">Chalecos</button>
             <button class="filter-chip" onclick="filterCatalog('chamarras', event)">Chamarras</button>
         </div>
 
-        <!-- GRID -->
         <div class="products-grid" id="productsGrid"></div>
     </main>
 
-    <!-- MODAL CARRITO -->
     <div class="overlay" id="overlay" onclick="toggleCartModal()"></div>
     <div class="modal-cart" id="modalCart">
         <div class="modal-header">
-            <h3><i class="fa-solid fa-receipt text-accent"></i> Tu Solicitud de Pedido</h3>
+            <h3><i class="fa-solid fa-receipt"></i> Tu Solicitud de Pedido</h3>
             <button class="close-modal" onclick="toggleCartModal()">&times;</button>
         </div>
 
@@ -381,22 +348,23 @@
                 <span id="cartTotalText">$0 MXN</span>
             </div>
 
-            <button class="whatsapp-btn" onclick="sendWhatsAppOrder()">
+            <button class="whatsapp-btn" id="sendBtn" onclick="sendWhatsAppOrder()">
                 <i class="fa-brands fa-whatsapp fa-lg"></i> Enviar Pedido por WhatsApp
             </button>
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="logo" style="justify-content:center; display:flex;">Dura<span>Glo</span></div>
         <p>Confección Textil Artesanal de Alta Resistencia</p>
-        <p style="font-size:0.75rem; color:#475569; margin-top:8px;">Atención directa y personalizada por WhatsApp para cotizaciones de mayoreo.</p>
+        <p style="font-size:0.75rem; color:#475569; margin-top:8px;">Atención directa y personalizada por WhatsApp.</p>
     </footer>
 
-    <!-- SCRIPT -->
     <script>
         const WHATSAPP_NUMBER = "525615635297";
+        const SUPABASE_URL = 'https://spthvgofautpxqcvkhyx.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_B4GgixRZk5CqCVOO1DmJGw_L2NMhGYB';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         const coloresGenerales = [
             "Negro", 
@@ -415,7 +383,6 @@
                 category: "chalecos",
                 price: 120,
                 desc: "Chaleco resistente ideal para niños y escuelas. Costuras reforzadas y excelente durabilidad.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 2", "Talla 4", "Talla 6", "Talla 8", "Talla 10"],
                 colors: coloresGenerales
             },
@@ -425,7 +392,6 @@
                 category: "chalecos",
                 price: 140,
                 desc: "Confección cómoda y resistente para adolescentes. Ideal para uso diario o uniforme.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 12", "Talla 14", "Talla 16"],
                 colors: coloresGenerales
             },
@@ -435,7 +401,6 @@
                 category: "chalecos",
                 price: 180,
                 desc: "Corte profesional de alta calidad, bolsas utilitarias y protección contra el frío ligero.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 34", "Talla 36", "Talla 38", "Talla 40", "Talla 42"],
                 colors: coloresGenerales
             },
@@ -445,7 +410,6 @@
                 category: "chalecos",
                 price: 220,
                 desc: "Confección espaciosa y robusta para trabajo u ocio con terminados de alta resistencia.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 44", "Talla 46"],
                 colors: coloresGenerales
             },
@@ -455,7 +419,6 @@
                 category: "chalecos",
                 price: 250,
                 desc: "Talla extra grande con ajuste confortable y costuras dobles de mayor durabilidad.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 50"],
                 colors: coloresGenerales
             },
@@ -465,7 +428,6 @@
                 category: "chamarras",
                 price: 160,
                 desc: "Chamarra térmica tipo Alpina. Brinda gran calidez y protección térmica para niños.",
-                image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 2", "Talla 4", "Talla 6", "Talla 8", "Talla 10"],
                 colors: coloresGenerales
             }
@@ -483,33 +445,27 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
-                    <div class="img-container">
-                        <span class="badge-tag">Directo de Fábrica</span>
-                        <img src="${p.image}" alt="${p.name}" class="product-img">
+                    <h3 class="product-title">${p.name}</h3>
+                    <div class="product-price">$${p.price} MXN</div>
+                    <p class="product-desc">${p.desc}</p>
+
+                    <div class="options-box">
+                        <label>Selecciona Talla:</label>
+                        <select id="size-${p.id}" class="select-custom">
+                            ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
+                        </select>
                     </div>
-                    <div class="product-content">
-                        <h3 class="product-title">${p.name}</h3>
-                        <div class="product-price">$${p.price} MXN</div>
-                        <p class="product-desc">${p.desc}</p>
 
-                        <div class="options-box">
-                            <label>Selecciona Talla:</label>
-                            <select id="size-${p.id}" class="select-custom">
-                                ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
-                            </select>
-                        </div>
-
-                        <div class="options-box">
-                            <label>Color / Tono:</label>
-                            <select id="color-${p.id}" class="select-custom">
-                                ${p.colors.map(c => `<option value="${c}">${c}</option>`).join('')}
-                            </select>
-                        </div>
-
-                        <button class="add-btn" onclick="addToCart(${p.id})">
-                            <i class="fa-solid fa-cart-plus"></i> Agregar al Pedido
-                        </button>
+                    <div class="options-box">
+                        <label>Color / Tono:</label>
+                        <select id="color-${p.id}" class="select-custom">
+                            ${p.colors.map(c => `<option value="${c}">${c}</option>`).join('')}
+                        </select>
                     </div>
+
+                    <button class="add-btn" onclick="addToCart(${p.id})">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar al Pedido
+                    </button>
                 `;
                 grid.appendChild(card);
             });
@@ -582,7 +538,7 @@
             document.getElementById('overlay').classList.toggle('active');
         }
 
-        function sendWhatsAppOrder() {
+        async function sendWhatsAppOrder() {
             if (cart.length === 0) {
                 alert("Por favor agrega al menos una prenda a tu pedido.");
                 return;
@@ -597,29 +553,66 @@
                 return;
             }
 
+            const sendBtn = document.getElementById('sendBtn');
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Registrando...`;
+
+            let total = cart.reduce((acc, item) => acc + item.price, 0);
+
+            try {
+                // 1. Guardar el encabezado del pedido en Supabase
+                const { data: pedidoData, error: pedidoError } = await supabaseClient
+                    .from('pedidos')
+                    .insert([{ nombre_cliente: name, tipo_cliente: clientType, total_mxn: total }])
+                    .select();
+
+                if (pedidoError) throw pedidoError;
+
+                const pedidoId = pedidoData[0].id;
+
+                // 2. Guardar las prendas asociadas al pedido
+                const detallesAInsertar = cart.map(item => ({
+                    pedido_id: pedidoId,
+                    nombre_producto: item.name,
+                    talla: item.size,
+                    color: item.color,
+                    precio: item.price
+                }));
+
+                const { error: detalleError } = await supabaseClient
+                    .from('detalle_pedido')
+                    .insert(detallesAInsertar);
+
+                if (detalleError) throw detalleError;
+
+            } catch (error) {
+                console.warn("No se pudo registrar el respaldo en la nube:", error.message);
+            }
+
+            // 3. Formatear y abrir WhatsApp
             let msg = `¡Hola Sra. Gloria / DuraGlo! Deseo solicitar el siguiente pedido:\n\n`;
             msg += `👤 *Cliente:* ${name}\n`;
             msg += `🏷️ *Tipo de Cliente:* ${clientType}\n`;
             msg += `----------------------------------------\n\n`;
 
-            let total = 0;
             cart.forEach((item, i) => {
                 msg += `${i + 1}. *${item.name}*\n`;
                 msg += `   • ${item.size}\n`;
                 msg += `   • Color: ${item.color}\n`;
                 msg += `   • Precio: $${item.price} MXN\n\n`;
-                total += item.price;
             });
 
             msg += `----------------------------------------\n`;
             msg += `💰 *Total Estimado:* $${total} MXN\n\n`;
             msg += `Quedo a la espera de sus datos de pago y tiempos estimados de entrega. ¡Muchas gracias!`;
 
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = `<i class="fa-brands fa-whatsapp fa-lg"></i> Enviar Pedido por WhatsApp`;
+
             const encoded = encodeURIComponent(msg);
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
         }
 
-        // Inicializar catálogo
         renderProducts();
     </script>
 </body>
