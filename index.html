@@ -90,27 +90,35 @@
 
         /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, rgba(7, 11, 20, 0.9), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1600&q=80') center/cover;
-            padding: 4rem 1.5rem;
+            background: linear-gradient(135deg, rgba(7, 11, 20, 0.92), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1600&q=80') center/cover;
+            padding: 3.5rem 1.5rem;
             text-align: center;
             border-bottom: 1px solid var(--border);
         }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -1px; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -1px; }
         .hero h1 span { color: var(--accent); }
-        .hero p { font-size: clamp(0.95rem, 2vw, 1.15rem); color: var(--text-muted); max-width: 700px; margin: 0 auto 1.5rem auto; }
+        .hero p { font-size: clamp(0.95rem, 2vw, 1.15rem); color: var(--text-muted); max-width: 750px; margin: 0 auto 1.5rem auto; }
 
-        .season-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: var(--accent);
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .trust-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
             padding: 8px 16px;
             border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 700;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+        .trust-item i { color: var(--accent); }
 
         /* FILTROS DE CATEGORÍA */
         .container { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.2rem; }
@@ -175,7 +183,7 @@
 
         .product-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
         .product-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #ffffff; }
-        .product-price { font-size: 1.3rem; font-weight: 800; color: var(--accent); margin-bottom: 0.6rem; }
+        .product-price { font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 0.6rem; }
         .product-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.5; }
 
         .options-box { margin-bottom: 1rem; }
@@ -310,7 +318,7 @@
     <header>
         <div class="brand-box">
             <div class="logo">Dura<span>Glo</span></div>
-            <span class="badge-exp">45 Años</span>
+            <span class="badge-exp">Calidad Directa de Taller</span>
         </div>
         <button class="cart-btn" onclick="toggleCartModal()">
             <i class="fa-solid fa-clipboard-list"></i>
@@ -321,11 +329,14 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div class="season-tag">
-            <i class="fa-solid fa-fire"></i> Temporada Sep - Dic: Chalecos Industriales
-        </div>
         <h1>Confección Textil <span>Profesional</span></h1>
-        <p>Prendas industriales, térmicas y trajes tradicionales de alta calidad. Fabricación sobre medida exacta del número 32 al 50.</p>
+        <p>Prendas industriales, térmicas y chamarras de alta resistencia confeccionadas con materiales premium. Atención directa a mayoristas, escuelas y clientes particulares.</p>
+        
+        <div class="trust-badges">
+            <div class="trust-item"><i class="fa-solid fa-scissors"></i> Confección A Medida</div>
+            <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Envíos y Entregas directas</div>
+            <div class="trust-item"><i class="fa-solid fa-tags"></i> Precios Directos de Fábrica</div>
+        </div>
     </section>
 
     <!-- CONTAINER & CATALOG -->
@@ -335,7 +346,6 @@
             <button class="filter-chip active" onclick="filterCatalog('todos', event)">Todos los Productos</button>
             <button class="filter-chip" onclick="filterCatalog('chalecos', event)">Chalecos</button>
             <button class="filter-chip" onclick="filterCatalog('chamarras', event)">Chamarras</button>
-            <button class="filter-chip" onclick="filterCatalog('tradicional', event)">Trajes Típicos</button>
         </div>
 
         <!-- GRID -->
@@ -380,53 +390,84 @@
     <!-- FOOTER -->
     <footer>
         <div class="logo" style="justify-content:center; display:flex;">Dura<span>Glo</span></div>
-        <p>Confección Textil Artesanal de Alta Resistencia | Desde el año 2000</p>
-        <p style="font-size:0.75rem; color:#475569; margin-top:8px;">Atención directa y segura para garantizar una comunicación confiable.</p>
+        <p>Confección Textil Artesanal de Alta Resistencia</p>
+        <p style="font-size:0.75rem; color:#475569; margin-top:8px;">Atención directa y personalizada por WhatsApp para cotizaciones de mayoreo.</p>
     </footer>
 
     <!-- SCRIPT -->
     <script>
         const WHATSAPP_NUMBER = "525615635297";
 
-        // Tallas estrictamente numéricas (32 a 50) + opción personalizada
-        const tallasDisponibles = ["32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "A la medida exacta"];
+        const coloresGenerales = [
+            "Negro", 
+            "Azul Marino", 
+            "Verde Militar", 
+            "Gris Oxford", 
+            "Rojo", 
+            "Vino", 
+            "Azul Rey"
+        ];
 
         const products = [
             {
                 id: 1,
-                name: "Chaleco Industrial Reflejante DuraGlo",
+                name: "Chaleco Infantil (Tallas 2 a 10)",
                 category: "chalecos",
-                price: 380,
-                desc: "Alta visibilidad, costuras reforzadas de uso rudo y múltiples bolsas frontales utilitarias.",
+                price: 120,
+                desc: "Chaleco resistente ideal para niños y escuelas. Costuras reforzadas y excelente durabilidad.",
                 image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
-                colors: ["Naranja Neón", "Amarillo Neón", "Azul Marino", "Negro"]
+                sizes: ["Talla 2", "Talla 4", "Talla 6", "Talla 8", "Talla 10"],
+                colors: coloresGenerales
             },
             {
                 id: 2,
-                name: "Chamarra Térmica Impermeable Pro",
-                category: "chamarras",
-                price: 850,
-                desc: "Protección total contra la intemperie, forro térmico acolchado y cierres industriales de alta resistencia.",
-                image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80",
-                colors: ["Negro Carbón", "Azul Marino Oscuro", "Gris Acero"]
+                name: "Chaleco Juvenil (Tallas 12 a 16)",
+                category: "chalecos",
+                price: 140,
+                desc: "Confección cómoda y resistente para adolescentes. Ideal para uso diario o uniforme.",
+                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
+                sizes: ["Talla 12", "Talla 14", "Talla 16"],
+                colors: coloresGenerales
             },
             {
                 id: 3,
-                name: "Traje Tamaulipeco Tradicional",
-                category: "tradicional",
-                price: 2500,
-                desc: "Confección artesanal de alta precisión con detalles bordados a mano y excelente caída.",
-                image: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=600&q=80",
-                colors: ["Gamuza Natural", "Café Tabaco", "Tono Personalizado"]
+                name: "Chaleco Adulto Standard (Tallas 34 a 42)",
+                category: "chalecos",
+                price: 180,
+                desc: "Corte profesional de alta calidad, bolsas utilitarias y protección contra el frío ligero.",
+                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
+                sizes: ["Talla 34", "Talla 36", "Talla 38", "Talla 40", "Talla 42"],
+                colors: coloresGenerales
             },
             {
                 id: 4,
-                name: "Traje Norteño de Gala",
-                category: "tradicional",
-                price: 2700,
-                desc: "Vestimenta regional norteña para agrupaciones, festivales y eventos de gala.",
-                image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80",
-                colors: ["Negro Elegante", "Hueso Tradicional", "Café Oscuro"]
+                name: "Chaleco Adulto XL (Tallas 44 y 46)",
+                category: "chalecos",
+                price: 220,
+                desc: "Confección espaciosa y robusta para trabajo u ocio con terminados de alta resistencia.",
+                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
+                sizes: ["Talla 44", "Talla 46"],
+                colors: coloresGenerales
+            },
+            {
+                id: 5,
+                name: "Chaleco Adulto Especial (Talla 50)",
+                category: "chalecos",
+                price: 250,
+                desc: "Talla extra grande con ajuste confortable y costuras dobles de mayor durabilidad.",
+                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
+                sizes: ["Talla 50"],
+                colors: coloresGenerales
+            },
+            {
+                id: 6,
+                name: "Chamarra Alpina Infantil (Tallas 2 a 10)",
+                category: "chamarras",
+                price: 160,
+                desc: "Chamarra térmica tipo Alpina. Brinda gran calidez y protección térmica para niños.",
+                image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80",
+                sizes: ["Talla 2", "Talla 4", "Talla 6", "Talla 8", "Talla 10"],
+                colors: coloresGenerales
             }
         ];
 
@@ -443,7 +484,7 @@
                 card.className = 'product-card';
                 card.innerHTML = `
                     <div class="img-container">
-                        <span class="badge-tag">Confección Artesanal</span>
+                        <span class="badge-tag">Directo de Fábrica</span>
                         <img src="${p.image}" alt="${p.name}" class="product-img">
                     </div>
                     <div class="product-content">
@@ -452,9 +493,9 @@
                         <p class="product-desc">${p.desc}</p>
 
                         <div class="options-box">
-                            <label>Talla Numérica:</label>
+                            <label>Selecciona Talla:</label>
                             <select id="size-${p.id}" class="select-custom">
-                                ${tallasDisponibles.map(t => `<option value="${t}">Talla ${t}</option>`).join('')}
+                                ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
                             </select>
                         </div>
 
@@ -564,7 +605,7 @@
             let total = 0;
             cart.forEach((item, i) => {
                 msg += `${i + 1}. *${item.name}*\n`;
-                msg += `   • Talla: ${item.size}\n`;
+                msg += `   • ${item.size}\n`;
                 msg += `   • Color: ${item.color}\n`;
                 msg += `   • Precio: $${item.price} MXN\n\n`;
                 total += item.price;
@@ -572,7 +613,7 @@
 
             msg += `----------------------------------------\n`;
             msg += `💰 *Total Estimado:* $${total} MXN\n\n`;
-            msg += `Quedo a la espera de sus datos de pago y tiempos estimados de confección. ¡Muchas gracias!`;
+            msg += `Quedo a la espera de sus datos de pago y tiempos estimados de entrega. ¡Muchas gracias!`;
 
             const encoded = encodeURIComponent(msg);
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
