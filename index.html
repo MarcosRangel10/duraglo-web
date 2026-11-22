@@ -90,7 +90,7 @@
 
         /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, rgba(7, 11, 20, 0.92), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1600&q=80') center/cover;
+            background: linear-gradient(135deg, rgba(7, 11, 20, 0.92), rgba(15, 23, 42, 0.85)), url('./images/chaleco-negro.jpg') center/cover;
             padding: 3.5rem 1.5rem;
             text-align: center;
             border-bottom: 1px solid var(--border);
@@ -162,7 +162,7 @@
             box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.2);
         }
 
-        .img-container { position: relative; width: 100%; height: 240px; overflow: hidden; }
+        .img-container { position: relative; width: 100%; height: 240px; overflow: hidden; background: #070b14; }
         .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .product-card:hover .product-img { transform: scale(1.06); }
 
@@ -398,15 +398,38 @@
     <script>
         const WHATSAPP_NUMBER = "525615635297";
 
+        // 7 colores generales (ajústalos o cambia las rutas si tus archivos tienen otro nombre)
         const coloresGenerales = [
-            "Negro", 
-            "Azul Marino", 
-            "Verde Militar", 
-            "Gris Oxford", 
-            "Rojo", 
-            "Vino", 
+            "Negro",
+            "Azul Marino",
+            "Verde Militar",
+            "Gris Oxford",
+            "Rojo",
+            "Vino",
             "Azul Rey"
         ];
+
+        // Mapa de imágenes por color para CHALECOS (editable)
+        const fotosChalecos = {
+            "Negro": "./images/chaleco-negro.jpg",
+            "Azul Marino": "./images/chaleco-azul-marino.jpg",
+            "Verde Militar": "./images/chaleco-verde-militar.jpg",
+            "Gris Oxford": "./images/chaleco-gris-oxford.jpg",
+            "Rojo": "./images/chaleco-rojo.jpg",
+            "Vino": "./images/chaleco-vino.jpg",
+            "Azul Rey": "./images/chaleco-azul-rey.jpg"
+        };
+
+        // Mapa de imágenes por color para CHAMARRAS (editable)
+        const fotosChamarras = {
+            "Negro": "./images/chamarra-negro.jpg",
+            "Azul Marino": "./images/chamarra-azul-marino.jpg",
+            "Verde Militar": "./images/chamarra-verde-militar.jpg",
+            "Gris Oxford": "./images/chamarra-gris-oxford.jpg",
+            "Rojo": "./images/chamarra-rojo.jpg",
+            "Vino": "./images/chamarra-vino.jpg",
+            "Azul Rey": "./images/chamarra-azul-rey.jpg"
+        };
 
         const products = [
             {
@@ -415,9 +438,9 @@
                 category: "chalecos",
                 price: 120,
                 desc: "Chaleco resistente ideal para niños y escuelas. Costuras reforzadas y excelente durabilidad.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 2", "Talla 4", "Talla 6", "Talla 8", "Talla 10"],
-                colors: coloresGenerales
+                colors: coloresGenerales,
+                colorImages: fotosChalecos
             },
             {
                 id: 2,
@@ -425,9 +448,9 @@
                 category: "chalecos",
                 price: 140,
                 desc: "Confección cómoda y resistente para adolescentes. Ideal para uso diario o uniforme.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 12", "Talla 14", "Talla 16"],
-                colors: coloresGenerales
+                colors: coloresGenerales,
+                colorImages: fotosChalecos
             },
             {
                 id: 3,
@@ -435,9 +458,9 @@
                 category: "chalecos",
                 price: 180,
                 desc: "Corte profesional de alta calidad, bolsas utilitarias y protección contra el frío ligero.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 34", "Talla 36", "Talla 38", "Talla 40", "Talla 42"],
-                colors: coloresGenerales
+                colors: coloresGenerales,
+                colorImages: fotosChalecos
             },
             {
                 id: 4,
@@ -445,9 +468,9 @@
                 category: "chalecos",
                 price: 220,
                 desc: "Confección espaciosa y robusta para trabajo u ocio con terminados de alta resistencia.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 44", "Talla 46"],
-                colors: coloresGenerales
+                colors: coloresGenerales,
+                colorImages: fotosChalecos
             },
             {
                 id: 5,
@@ -455,9 +478,9 @@
                 category: "chalecos",
                 price: 250,
                 desc: "Talla extra grande con ajuste confortable y costuras dobles de mayor durabilidad.",
-                image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 50"],
-                colors: coloresGenerales
+                colors: coloresGenerales,
+                colorImages: fotosChalecos
             },
             {
                 id: 6,
@@ -465,13 +488,30 @@
                 category: "chamarras",
                 price: 160,
                 desc: "Chamarra térmica tipo Alpina. Brinda gran calidez y protección térmica para niños.",
-                image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80",
                 sizes: ["Talla 2", "Talla 4", "Talla 6", "Talla 8", "Talla 10"],
-                colors: coloresGenerales
+                colors: coloresGenerales,
+                colorImages: fotosChamarras
             }
         ];
 
         let cart = [];
+
+        function getProductImage(product, selectedColor) {
+            if (product.colorImages && product.colorImages[selectedColor]) {
+                return product.colorImages[selectedColor];
+            }
+            const firstColor = product.colors[0];
+            return product.colorImages[firstColor];
+        }
+
+        function updateCardColorImage(productId) {
+            const product = products.find(p => p.id === productId);
+            const colorSelect = document.getElementById(`color-${productId}`);
+            const imgElement = document.getElementById(`img-${productId}`);
+            if (product && colorSelect && imgElement) {
+                imgElement.src = getProductImage(product, colorSelect.value);
+            }
+        }
 
         function renderProducts(filter = 'todos') {
             const grid = document.getElementById('productsGrid');
@@ -480,12 +520,15 @@
             const filtered = filter === 'todos' ? products : products.filter(p => p.category === filter);
 
             filtered.forEach(p => {
+                const defaultColor = p.colors[0];
+                const defaultImg = getProductImage(p, defaultColor);
+
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
                     <div class="img-container">
                         <span class="badge-tag">Directo de Fábrica</span>
-                        <img src="${p.image}" alt="${p.name}" class="product-img">
+                        <img id="img-${p.id}" src="${defaultImg}" alt="${p.name}" class="product-img">
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">${p.name}</h3>
@@ -501,7 +544,7 @@
 
                         <div class="options-box">
                             <label>Color / Tono:</label>
-                            <select id="color-${p.id}" class="select-custom">
+                            <select id="color-${p.id}" class="select-custom" onchange="updateCardColorImage(${p.id})">
                                 ${p.colors.map(c => `<option value="${c}">${c}</option>`).join('')}
                             </select>
                         </div>
